@@ -9,5 +9,7 @@ namespace _40_KrakerApp
     internal class deneme
     {
         public string Adi { get; set; }
+        public string Soyadi { get; set; }
+
     }
 }
