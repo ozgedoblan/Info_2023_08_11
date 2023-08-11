@@ -38,6 +38,7 @@ namespace Kraker.DAL
             }
             return result;
         }
+
         public static DataSet GetDataSet(string cmdText)
         {
             DataSet ds = new DataSet();
@@ -46,8 +47,10 @@ namespace Kraker.DAL
             adap.Fill(ds);
             return ds;
         }
+
         public static DataTable GetDataTable(string cmdText)
         {
+            //Dataset in ilk tablosunu aldık.
             return GetDataSet(cmdText).Tables[0];
         }
     }
