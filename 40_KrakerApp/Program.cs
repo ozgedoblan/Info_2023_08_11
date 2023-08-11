@@ -11,6 +11,26 @@ class Program
 {
     static void Main(string[] args)
     {
+        var con = DB.GetConnection();
+        var cmd = new SqlCommand();
+        cmd.Connection = con;
+        cmd.CommandText = "usp_Status";
+        cmd.CommandType = CommandType.StoredProcedure;
+
+        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+        DataTable dt = new DataTable();
+        adapter.Fill(dt);
+
+        if (dt.Rows.Count > 0)
+        {
+            Console.WriteLine("Çalışan ="+ dt.Rows[0]["CalisanSayisi"]);
+            Console.WriteLine("Departman =" + dt.Rows[0]["DepartmanSayisi"]);
+            Console.WriteLine("Takım=" + dt.Rows[0]["TakimSayisi"]);
+        }
+    }
+
+    private static void DataTableTest()
+    {
         string sqlstr = @"select*from Calisan;
                           select*from Departman;
                           select*from Takim;";
@@ -21,9 +41,6 @@ class Program
         {
             Console.WriteLine(dataRow["Adi"]);
         }
-
-        //var ds = DB.GetDataSet(sqlstr);
-
     }
 
     private static void DataSetOrnek(string sqlstr)
